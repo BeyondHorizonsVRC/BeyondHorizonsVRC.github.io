@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BHG DBS_company</title>
+  <link rel="stylesheet" href="under_item_style.css">
+</head>
+<body>
+
+<!-- 左上ロゴ + テキスト -->
+<a href="main.html" class="top-left">
+  <img src="../image/logo_silhouette_black.png" alt="logo">
+  <div class="text">
+    <span>BEYOND HORIZONS GROUP</span>
+    <span>Database Server</span>
+  </div>
+</div>
+</a>
+
+<!-- 右下テキスト -->
+<a href="https://www.hotelqadesh.com/" class="bottom-right-text">HOTEL QADESH DERIVATIVE WORKS</a>
+
+<!-- 中央ラッパー -->
+<div class="center-wrapper">
+  <span class="title">SELECT FILE</span>
+  <div class="db-container">
+    <!-- 選択項目 -->
+    <div class="arrow selected">
+      <a href="company.html">&gt; company_会社概要</a>
+      <span class="next-links" id="nextLinks"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 中央本文（タイプライター表示） -->
+<div class="top-fade"></div>
+<div class="center-text" id="centerText"></div>
+
+<script>
+/* -------------------
+  本文タイプライター
+------------------- */
+const textParts = [
+  { text: `Clearance Level 1
+
+BEYOND HORIZONS GROUP
+Company Overview
+
+Beyond Horizonsは、各国富裕層をターゲットに、一般的な旅客サービスから、プライベートジェット、レジャーフライトを興行している旅行代理店である。株式は非公開であり、運営方針、また体制については表向きにならない傾向がある。
+「最上級の安全と、確実な往来を」をビジョンとしており、搭乗前の送迎サービスから旅行中のガイドまでを自社単独で完結させることにより、高水準のセキュリティを実現させている。
+
+・高級所得者、富裕層向け旅行プランのご提案
+・大都市─リゾート間をつなぐ自社保有ジェット機による定期便運航
+・直接契約ホテルやリゾート地における、クルーザーやアクロバットなどの興行
+
+
+`, color: "black" },
+  { text: `
+
+Clearance Level 2
+
+顧客が必要とする非合法的なサービスを提供し、表社会と裏社会の橋渡しを行っている。
+偽造や賄賂、独自ルートを用いた違法な物資の密輸や密航、現地におけるクライアントの警護などが主な業務内容である。
+
+・非正規手段による特殊物資、要人の輸送ならび警護
+・特別な考慮を要する旅程に係るコンサルティング業務
+
+
+Beyond Horizonsの存在意義は、法と力の支配する世界における「自由」の確保と維持にある。ここでの「自由」とは、国際法からの逸脱であり、法的拘束力からの脱出であり、究極的には「あるがままに世界を渡り歩ける」状態を指す。
+本社がアクセスの悪い離島に置かれていることも、法外とも思える高額な旅客サービスを提供しているにも関わらず、それが莫大な利益をもたらしていることも、世界に「自由」が求められている証左である。
+現CEOであるグリムスの意向により、このミッションはさらに強いものとなった。
+曰く「力なきもののための自由は、真に力あるもののみ掴めるものである」。自由を享受するためには、あらゆる障害を跳ね除け、逃避できるだけの力が必要だと彼女は考えている。
+
+本ミッションの提示により、Beyond Horizonsのビジョンは制定されている。
+顧客が至上の「自由」を味わい、この自由を保持するためのパトロンとなることで、束縛に満ちた世界から抜け出せる唯一の場所となることを目指しているのだ。
+
+「縛られることのない、真なる自由を」
+
+
+以降のアクセスは Clearance Level 3 が必要です。
+`, color: "red" }
+];
+
+const target = document.getElementById("centerText");
+let partIndex = 0;
+let charIndex = 0;
+
+function typeWriterColor() {
+  if (partIndex < textParts.length) {
+    const part = textParts[partIndex];
+    if (charIndex < part.text.length) {
+      target.innerHTML += `<span style="color:${part.color}">${part.text.charAt(charIndex)}</span>`;
+      charIndex++;
+      setTimeout(typeWriterColor, 1); // タイプ速度
+    } else {
+      charIndex = 0;
+      partIndex++;
+      typeWriterColor();
+    }
+  }
+}
+
+typeWriterColor();
+
+/* -------------------
+  小リンクタイプライター
+------------------- */
+const nextLinksData = [
+  { text: '> locations_拠点', href: 'locations.html' },
+  { text: '> employees_従業員', href: 'employees.html' },
+  { text: '> services_サービス', href: 'services.html' },
+  { text: '> affiliates_関連会社', href: 'affiliates.html' },
+  { text: '> recruitment_採用', href: 'recruitment.html' }
+];
+
+const nextLinksContainer = document.getElementById('nextLinks');
+let linkIndex = 0;
+let charIndexLink = 0;
+
+function typeNextLinks() {
+  if (linkIndex < nextLinksData.length) {
+    const linkData = nextLinksData[linkIndex];
+    if (charIndexLink === 0) {
+      // 新しいリンク用aを作成
+      const a = document.createElement('a');
+      a.href = linkData.href;
+      a.id = `link-${linkIndex}`;
+      nextLinksContainer.appendChild(a);
+    }
+    const a = document.getElementById(`link-${linkIndex}`);
+    a.textContent += linkData.text.charAt(charIndexLink);
+    charIndexLink++;
+    if (charIndexLink < linkData.text.length) {
+      setTimeout(typeNextLinks, 1); // 文字タイプ速度
+    } else {
+      charIndexLink = 0;
+      linkIndex++;
+      setTimeout(typeNextLinks, 10); // リンク間の遅延
+    }
+  }
+}
+
+typeNextLinks();
+</script>
+
+</body>
+</html>

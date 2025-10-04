@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BHG DBS_locations</title>
+  <link rel="stylesheet" href="under_item_style.css">
+</head>
+<body>
+
+<!-- 左上ロゴ + テキスト -->
+<a href="main.html" class="top-left">
+  <img src="../image/logo_silhouette_black.png" alt="logo">
+  <div class="text">
+    <span>BEYOND HORIZONS GROUP</span>
+    <span>Database Server</span>
+  </div>
+</div>
+</a>
+
+<!-- 右下テキスト -->
+<a href="https://www.hotelqadesh.com/" class="bottom-right-text">HOTEL QADESH DERIVATIVE WORKS</a>
+
+<!-- 中央ラッパー -->
+<div class="center-wrapper">
+  <span class="title">SELECT FILE</span>
+  <div class="db-container">
+    <!-- 選択項目 -->
+    <div class="arrow selected">
+      <a href="locations.html">&gt; locations_拠点</a>
+      <span class="next-links" id="nextLinks"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 中央本文（タイプライター表示） -->
+<div class="top-fade"></div>
+<div class="center-text" id="centerText"></div>
+
+<script>
+/* -------------------
+  本文タイプライター
+------------------- */
+const textParts = [
+  { text: `Clearance Level 1
+
+富裕層向けの旅行プランを提供するBeyond Horizonsは、世界の観光地や主要都市に支社兼バーラウンジである「Shoreline」を展開している。
+各地におけるサービスの中心的拠点としても、バケーション中の羽休めとしても用いられる施設であり、世界を飛び回るCEOが顔を出すこともある。旅行中に「次の旅行」について相談する、なんてこともできるのが、Beyond Horizonsの特色である。
+
+呼称の由来は、太平洋を渡る鳥、ハシボソミズナギドリの生態から。
+単独で海を渡るこの鳥は、シーズンになると各沿岸において観測できるようになる。世界中を飛び回る人々が、その途中に辿り着くひと時の休息所。その意味が込められている。
+
+ちなみに、ハシボソミズナギドリの別名は「マトンバード」。
+Beyond Horizonsが運航する旅客機に付けられている愛称でもある。
+
+
+アフリカ
+モロッコ マラケシュ
+
+ヨーロッパ
+ギリシャ サントリーニ島
+イタリア ローマ/ヴェネツィア
+グレートブリテン及び北アイルランド連合王国 ロンドン
+
+アジア
+日本 東京
+UAE ドバイ
+中華人民共和国 香港
+
+北米
+アラスカ アンカレッジ
+アメリカ合衆国 ラスベガス/ニューヨーク
+
+`, color: "black" },
+  { text: `
+
+`, color: "red" }
+];
+
+const target = document.getElementById("centerText");
+let partIndex = 0;
+let charIndex = 0;
+
+function typeWriterColor() {
+  if (partIndex < textParts.length) {
+    const part = textParts[partIndex];
+    if (charIndex < part.text.length) {
+      target.innerHTML += `<span style="color:${part.color}">${part.text.charAt(charIndex)}</span>`;
+      charIndex++;
+      setTimeout(typeWriterColor, 1); // タイプ速度
+    } else {
+      charIndex = 0;
+      partIndex++;
+      typeWriterColor();
+    }
+  }
+}
+
+typeWriterColor();
+
+/* -------------------
+  小リンクタイプライター
+------------------- */
+const nextLinksData = [
+  { text: '> company_会社概要', href: 'company.html' },
+  { text: '> employees_従業員', href: 'employees.html' },
+  { text: '> services_サービス', href: 'services.html' },
+  { text: '> affiliates_関連会社', href: 'affiliates.html' },
+  { text: '> recruitment_採用', href: 'recruitment.html' }
+];
+
+const nextLinksContainer = document.getElementById('nextLinks');
+let linkIndex = 0;
+let charIndexLink = 0;
+
+function typeNextLinks() {
+  if (linkIndex < nextLinksData.length) {
+    const linkData = nextLinksData[linkIndex];
+    if (charIndexLink === 0) {
+      // 新しいリンク用aを作成
+      const a = document.createElement('a');
+      a.href = linkData.href;
+      a.id = `link-${linkIndex}`;
+      nextLinksContainer.appendChild(a);
+    }
+    const a = document.getElementById(`link-${linkIndex}`);
+    a.textContent += linkData.text.charAt(charIndexLink);
+    charIndexLink++;
+    if (charIndexLink < linkData.text.length) {
+      setTimeout(typeNextLinks, 1); // 文字タイプ速度
+    } else {
+      charIndexLink = 0;
+      linkIndex++;
+      setTimeout(typeNextLinks, 10); // リンク間の遅延
+    }
+  }
+}
+
+typeNextLinks();
+</script>
+
+</body>
+</html>

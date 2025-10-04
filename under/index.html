@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Access Authorization</title>
+<style>
+  body {
+    margin:0;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#f5f5f5;
+    font-family:"Helvetica Neue", sans-serif;
+    overflow:hidden;
+    position:relative;
+    transition: background 2s ease;
+  }
+  .container {
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+
+  /* 画像 */
+  #introImage {
+    position:absolute;
+    bottom:50%;
+    left:50%;
+    transform:translate(-50%,50%);
+    opacity:0;
+    transition: all 0.5s ease;
+    width:400px;
+    height:auto;
+  }
+
+  /* 入力風テキスト */
+  #textArea, .subTextArea {
+    font-family: "Courier New", Courier, monospace;
+    white-space: pre-wrap;
+    opacity:0;
+    position:absolute;
+    left:55%;
+    text-align:left;
+    font-size:2em;
+    transform:translateY(-50%);
+  }
+
+  /* 円とステータス */
+  .circle { position:relative; display:flex; align-items:center; justify-content:center; border-radius:50%; transition: transform 1.5s ease-out, opacity 0.5s ease-out; opacity:0;}
+  .orbit { position:absolute; border-radius:50%; animation: spin linear infinite; transition: width 1.5s ease-out, height 1.5s ease-out;}
+  @keyframes spin { 100% { transform: rotate(360deg); } }
+  .status { font-family: "Courier New", Courier, monospace; font-size:28px; letter-spacing:2px; position:absolute; z-index:1; transition:opacity 0.5s; opacity:0;}
+
+  /* Welcome メッセージ */
+  #welcomeContainer { position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); text-align:center; transition:transform 0.5s, opacity 0.5s;}
+  .welcome { opacity:0; margin:0.25em 0; transition: transform 0.5s, opacity 0.5s; font-size:2em; }
+  #welcomeLine2 { font-size:3em; }
+  #clearance { opacity:0; font-size:1.6em; margin-top:0.5em; transition:opacity 0.5s;}
+  @keyframes flash {0%{opacity:0;}25%{opacity:1;}50%{opacity:0;}75%{opacity:1;}100%{opacity:1;}}
+</style>
+</head>
+<body>
+<div class="container" id="animationContainer">
+  <img id="introImage" src="../image/logo_silhouette_black.png">
+  <div id="textArea"></div>
+  <div class="circle" id="circleContainer">
+    <div class="orbit" id="orbit1" style="width:560px;height:560px;border:2px solid #eee;border-top:2px solid #111;animation-duration:2s;"></div>
+    <div class="orbit" id="orbit2" style="width:640px;height:640px;border:2px solid transparent;border-top:2px solid #fff;animation-duration:3s;"></div>
+    <div class="orbit" id="orbit3" style="width:800px;height:800px;border:2px solid transparent;border-top:1px solid #111;animation-duration:4s;"></div>
+    <span class="status" id="status">START PROCESSING...</span>
+  </div>
+</div>
+
+<div id="welcomeContainer">
+  <p class="welcome" id="welcomeLine1">Welcome to</p>
+  <p class="welcome" id="welcomeLine2">Beyond Horizons Group</p>
+  <p class="welcome" id="welcomeLine3">database server</p>
+  <p id="clearance">Clearance level : 2</p>
+</div>
+
+<script>
+const status = document.getElementById("status");
+const introImage = document.getElementById("introImage");
+const textArea = document.getElementById("textArea");
+
+const preTexts = [
+  "ACCESS CODE REQUIRED",
+  "ENTER ID AND PASSPHRASE",
+  "REQUEST RECEIVE"
+];
+
+const subTextLines = ["> 16239945", "> Foxtrot Near Delta"];
+
+function typeText(element, text, speed, callback=null){
+  let i=0;
+  function step(){
+    if(i<=text.length){
+      element.textContent = text.substring(0,i);
+      i++;
+      setTimeout(step, speed);
+    } else {
+      if(callback) callback();
+    }
+  }
+  step();
+}
+
+window.addEventListener("load",()=>{
+  // 画像フェードイン
+  setTimeout(()=>{
+    introImage.style.bottom="50%";
+    introImage.style.opacity="1";
+  },50);
+
+  // 画像を少し待ってから左に移動
+  setTimeout(()=>{
+    introImage.style.left="30%";
+  },600);
+
+  // 画像移動完了後に文字入力開始
+  setTimeout(()=>{
+    textArea.style.opacity="1";
+
+    typeText(textArea, preTexts[0], 10, ()=>{
+      setTimeout(()=>{
+        typeText(textArea, preTexts[1], 10, ()=>{
+          setTimeout(()=>{
+            const subAreas = [];
+            subTextLines.forEach((line, idx)=>{
+              const sub = document.createElement("div");
+              sub.className="subTextArea";
+              sub.style.top=`calc(50% + ${1.5 + idx*1.2}em)`; 
+              document.getElementById("animationContainer").appendChild(sub);
+              sub.style.opacity="1";
+              subAreas.push(sub);
+            });
+
+            typeText(subAreas[0], subTextLines[0], 25, ()=>{
+              setTimeout(()=>{
+                typeText(subAreas[1], subTextLines[1], 25, ()=>{
+                  setTimeout(()=>{
+                    subAreas.forEach(sub=>{ sub.remove(); });
+                    typeText(textArea, preTexts[2], 10, ()=>{
+                      setTimeout(()=>{
+                        // 画像と入力風テキストを瞬時に消す
+                        introImage.remove();
+                        textArea.remove();
+
+                        const container = document.getElementById("circleContainer");
+                        container.style.opacity="1";
+                        status.style.opacity="1";
+
+                        // 初期大きさから縮小
+                        document.getElementById("orbit1").style.width="280px";
+                        document.getElementById("orbit1").style.height="280px";
+                        document.getElementById("orbit2").style.width="320px";
+                        document.getElementById("orbit2").style.height="320px";
+                        document.getElementById("orbit3").style.width="400px";
+                        document.getElementById("orbit3").style.height="400px";
+
+                        // START PROCESSING... 表示長め
+                        setTimeout(()=>{ status.innerText="PASSPHRASE ACCEPTED"; },1500);
+                        // PASSPHRASE ACCEPTED 表示短く
+                        setTimeout(()=>{ status.style.opacity="0"; },2000);
+
+                        // 円の縮小フェードアウトを速く
+                        setTimeout(()=>{
+                          container.style.transition="transform 0.5s ease-out, opacity 0.5s ease-out";
+                          container.style.transform="scale(0)";
+                          container.style.opacity="0";
+                        },2300);
+
+                        // Welcome 表示
+                        setTimeout(()=>{ document.getElementById("welcomeLine1").style.opacity="1"; },2800);
+                        setTimeout(()=>{ document.getElementById("welcomeLine2").style.animation="flash 0.25s forwards"; },3200);
+                        setTimeout(()=>{ document.getElementById("welcomeLine3").style.animation="flash 0.25s forwards"; },3600);
+                        setTimeout(()=>{ document.getElementById("clearance").style.opacity="1"; },4400);
+
+                        // 最終フェードアウト
+                        setTimeout(()=>{
+                          const welcome=document.getElementById("welcomeContainer");
+                          welcome.style.transform="translate(-50%, -30%)";
+                          welcome.style.opacity="0";
+                        },8000);
+
+                        setTimeout(()=>{ window.location.href="main.html"; },9500);
+
+                      },800);
+                    });
+                  },400);
+                });
+              },800);
+            });
+
+          },800);
+
+        });
+      },800);
+    });
+
+  },1200); // 画像移動完了後に文字入力
+});
+</script>
+</body>
+</html>

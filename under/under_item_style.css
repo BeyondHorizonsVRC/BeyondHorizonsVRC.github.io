@@ -1,0 +1,162 @@
+  body {
+    font-family: "Courier New", monospace;
+    margin: 0;
+    background: #f5f5f5;
+    color: #000;
+    height: 100vh;
+    overflow: auto;
+    position: relative;
+  }
+
+  /* 左上ロゴ + テキスト */
+  .top-left {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    color: #000;
+    text-decoration: none;
+    z-index: 1000;
+  }
+  .top-left img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  .top-left .text {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+  }
+
+  /* 右下テキスト */
+  .bottom-right-text {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-family: "Courier New", monospace;
+    font-size: 0.9rem;
+    color: #000;
+    text-decoration: none;
+  }
+
+  /* 中央ラッパーを左上ロゴ右下に固定（縮小なし） */
+  .center-wrapper {
+    position: fixed;
+    left: 261px;  /* ロゴ右 + マージン */
+    top: 70px;   /* ロゴ下 + マージン */
+    transform: none; /* 初期は縮小なし */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 1000;
+  }
+
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    line-height: 2;
+    transition: line-height 0.3s, margin-bottom 0.3s;
+  }
+
+  .db-container {
+    font-size: 1.2rem;
+    line-height: 2.0;
+    width: auto;
+    margin-left: 2ch;
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+
+  .arrow {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+
+  }
+
+  .arrow a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .arrow a:hover {
+    text-decoration: underline;
+  }
+
+  .next-links {
+  margin-left: 15px; /* 会社概要リンクから少し離す */
+    display: flex;
+    gap: 10px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 1000;
+  }
+
+  .next-links a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .next-links a:hover {
+    text-decoration: underline;
+  }
+
+/* 本文 */
+.center-text {
+  position: relative;
+  margin-top: 250px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.1rem;
+  text-align: center;
+  max-width: 80%;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  padding-bottom: 100px; /* 下の余白 */
+}
+
+/* 上部フェードオーバーレイ */
+.top-fade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 250px; /* フェードの高さ */
+  background: linear-gradient(to bottom, #f5f5f5 0px, #f5f5f5 200px, transparent 250px);
+  pointer-events: none; /* クリックを透過 */
+  z-index: 500; /* ロゴより下げたければ調整 */
+}
+
+  /* 従業員リスト */
+  .employee-center {
+    margin-top: 250px; /* 中央ラッパー下に配置 */
+    width: 90%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .employee {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .employee img {
+    width: 80px;
+    height: auto;
+    margin-right: 15px;
+  }
+
+  .employee-info {
+    display: flex;
+    gap: 20px;
+    font-size: 1rem;
+    flex-wrap: wrap;
+  }

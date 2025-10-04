@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BHG DBS_services</title>
+  <link rel="stylesheet" href="under_item_style.css">
+</head>
+<body>
+
+<!-- 左上ロゴ + テキスト -->
+<a href="main.html" class="top-left">
+  <img src="../image/logo_silhouette_black.png" alt="logo">
+  <div class="text">
+    <span>BEYOND HORIZONS GROUP</span>
+    <span>Database Server</span>
+  </div>
+</div>
+</a>
+
+<!-- 右下テキスト -->
+<a href="https://www.hotelqadesh.com/" class="bottom-right-text">HOTEL QADESH DERIVATIVE WORKS</a>
+
+<!-- 中央ラッパー -->
+<div class="center-wrapper">
+  <span class="title">SELECT FILE</span>
+  <div class="db-container">
+    <!-- 選択項目 -->
+    <div class="arrow selected">
+      <a href="services.html">&gt; services_サービス</a>
+      <span class="next-links" id="nextLinks"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 中央本文（タイプライター表示） -->
+<div class="top-fade"></div>
+<div class="center-text" id="centerText"></div>
+
+<script>
+/* -------------------
+  本文タイプライター
+------------------- */
+const textParts = [
+  { text: `Clearance Level 0
+
+「フォックストロット・ニア・デルタ」パッケージをご検討ください。
+`, color: "black" },
+  { text: `
+
+Clearance Level 1
+非正規手段によってのみ達成される旅程のうち、特に考慮を要するものについては、特殊なパッケージでのみ受諾している。
+一個人では到底払えない金額ではあるが、どのような日程、計画、懸念事項であろうと確実に遂行する。
+
+支社兼バーラウンジである「Shoreline」では、特定の人物に対してのみ開かれる"交流会を開催している。"
+
+`, color: "red" }
+];
+
+const target = document.getElementById("centerText");
+let partIndex = 0;
+let charIndex = 0;
+
+function typeWriterColor() {
+  if (partIndex < textParts.length) {
+    const part = textParts[partIndex];
+    if (charIndex < part.text.length) {
+      target.innerHTML += `<span style="color:${part.color}">${part.text.charAt(charIndex)}</span>`;
+      charIndex++;
+      setTimeout(typeWriterColor, 1); // タイプ速度
+    } else {
+      charIndex = 0;
+      partIndex++;
+      typeWriterColor();
+    }
+  }
+}
+
+typeWriterColor();
+
+/* -------------------
+  小リンクタイプライター
+------------------- */
+const nextLinksData = [
+  { text: '> company_会社概要', href: 'company.html' },
+  { text: '> locations_拠点', href: 'locations.html' },
+  { text: '> employees_従業員', href: 'employees.html' },
+  { text: '> affiliates_関連会社', href: 'affiliates.html' },
+  { text: '> recruitment_採用', href: 'recruitment.html' }
+];
+
+const nextLinksContainer = document.getElementById('nextLinks');
+let linkIndex = 0;
+let charIndexLink = 0;
+
+function typeNextLinks() {
+  if (linkIndex < nextLinksData.length) {
+    const linkData = nextLinksData[linkIndex];
+    if (charIndexLink === 0) {
+      // 新しいリンク用aを作成
+      const a = document.createElement('a');
+      a.href = linkData.href;
+      a.id = `link-${linkIndex}`;
+      nextLinksContainer.appendChild(a);
+    }
+    const a = document.getElementById(`link-${linkIndex}`);
+    a.textContent += linkData.text.charAt(charIndexLink);
+    charIndexLink++;
+    if (charIndexLink < linkData.text.length) {
+      setTimeout(typeNextLinks, 1); // 文字タイプ速度
+    } else {
+      charIndexLink = 0;
+      linkIndex++;
+      setTimeout(typeNextLinks, 10); // リンク間の遅延
+    }
+  }
+}
+
+typeNextLinks();
+</script>
+
+</body>
+</html>

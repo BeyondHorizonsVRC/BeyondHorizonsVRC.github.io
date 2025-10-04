@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BHG DBS_recruitment</title>
+  <link rel="stylesheet" href="under_item_style.css">
+</head>
+<body>
+
+<!-- 左上ロゴ + テキスト -->
+<a href="main.html" class="top-left">
+  <img src="../image/logo_silhouette_black.png" alt="logo">
+  <div class="text">
+    <span>BEYOND HORIZONS GROUP</span>
+    <span>Database Server</span>
+  </div>
+</div>
+</a>
+
+<!-- 右下テキスト -->
+<a href="https://www.hotelqadesh.com/" class="bottom-right-text">HOTEL QADESH DERIVATIVE WORKS</a>
+
+<!-- 中央ラッパー -->
+<div class="center-wrapper">
+  <span class="title">SELECT FILE</span>
+  <div class="db-container">
+    <!-- 選択項目 -->
+    <div class="arrow selected">
+      <a href="recruitment.html">&gt; recruitment_採用</a>
+      <span class="next-links" id="nextLinks"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 中央本文（タイプライター表示） -->
+<div class="top-fade"></div>
+<div class="center-text" id="centerText"></div>
+
+<script>
+/* -------------------
+  本文タイプライター
+------------------- */
+const textParts = [
+  { text: `Clearance Level 1
+
+募集要項
+
+共通事項
+・最高級のサービスを提供する立場として相応の礼儀を知り、また行使できるもの
+・スケジュール管理を厳守し、自己の余裕のある範囲で適切な業務が行えるもの
+
+専属社員/契約社員の区別
+・ビヨンドホライゾンズ社にのみ籍を置き、本社業務に就くものを「専属社員」とする。
+・他団体/組織/フリーランスで活動し、その能力によって契約を交わし、本社業務の補助に就くものを「契約社員」とする。
+・なお、専属/契約の区別なく、当社スタッフとして平等な権利と義務を持ち、適切な報酬を契約により決定する。
+
+
+コンサルタント（専属/契約）
+　旅行代理店のコンサルタントとして、クライアントの求める旅程について検討、提案ができる人材。
+　クライアントと直接コミュニケーションを行い、クライアントの求める対話を提供できることを第一とする。　
+
+
+エージェント（専属/契約）
+　施設内のセキュリティ、VIPの護衛、現地における包括的活動を執行する人材。
+　各々の専門性と独自性により配属する。
+
+
+スペシャリスト（専属/契約）
+　保有する専門分野の知識を活かし、本社業務に携わる人材。
+　交流会ほか自社保有施設の整備や改善を行い、クライアントの体験をより充足させることを目的とする。
+
+
+スタッフ（専属/契約）
+　全般的な事務作業と、クライアントとの補助的なコミュニケーションを行う人材。
+　この職種に限り、他職種との兼任を可とする。
+
+`, color: "black" },
+  { text: `
+
+This part is now RED and highlighted.
+`, color: "red" }
+];
+
+const target = document.getElementById("centerText");
+let partIndex = 0;
+let charIndex = 0;
+
+function typeWriterColor() {
+  if (partIndex < textParts.length) {
+    const part = textParts[partIndex];
+    if (charIndex < part.text.length) {
+      target.innerHTML += `<span style="color:${part.color}">${part.text.charAt(charIndex)}</span>`;
+      charIndex++;
+      setTimeout(typeWriterColor, 1); // タイプ速度
+    } else {
+      charIndex = 0;
+      partIndex++;
+      typeWriterColor();
+    }
+  }
+}
+
+typeWriterColor();
+
+/* -------------------
+  小リンクタイプライター
+------------------- */
+const nextLinksData = [
+  { text: '> company_会社概要', href: 'company.html' },
+  { text: '> locations_拠点', href: 'locations.html' },
+  { text: '> employees_従業員', href: 'employees.html' },
+  { text: '> services_サービス', href: 'services.html' },
+  { text: '> affiliates_関連会社', href: 'affiliates.html' },
+];
+
+const nextLinksContainer = document.getElementById('nextLinks');
+let linkIndex = 0;
+let charIndexLink = 0;
+
+function typeNextLinks() {
+  if (linkIndex < nextLinksData.length) {
+    const linkData = nextLinksData[linkIndex];
+    if (charIndexLink === 0) {
+      // 新しいリンク用aを作成
+      const a = document.createElement('a');
+      a.href = linkData.href;
+      a.id = `link-${linkIndex}`;
+      nextLinksContainer.appendChild(a);
+    }
+    const a = document.getElementById(`link-${linkIndex}`);
+    a.textContent += linkData.text.charAt(charIndexLink);
+    charIndexLink++;
+    if (charIndexLink < linkData.text.length) {
+      setTimeout(typeNextLinks, 1); // 文字タイプ速度
+    } else {
+      charIndexLink = 0;
+      linkIndex++;
+      setTimeout(typeNextLinks, 10); // リンク間の遅延
+    }
+  }
+}
+
+typeNextLinks();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BHG DBS_services</title>
+  <link rel="stylesheet" href="under_item_style.css">
+</head>
+<body>
+
+<!-- 左上ロゴ + テキスト -->
+<a href="main.html" class="top-left">
+  <img src="../image/logo_silhouette_black.png" alt="logo">
+  <div class="text">
+    <span>BEYOND HORIZONS GROUP</span>
+    <span>Database Server</span>
+  </div>
+</div>
+</a>
+
+<!-- 右下テキスト -->
+<a href="https://www.hotelqadesh.com/" class="bottom-right-text">HOTEL QADESH DERIVATIVE WORKS</a>
+
+<!-- 中央ラッパー -->
+<div class="center-wrapper">
+  <span class="title">SELECT FILE</span>
+  <div class="db-container">
+    <!-- 選択項目 -->
+    <div class="arrow selected">
+      <a href="affiliates.html">&gt; affiliates_関連会社</a>
+      <span class="next-links" id="nextLinks"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 中央本文（タイプライター表示） -->
+<div class="top-fade"></div>
+<div class="center-text" id="centerText"></div>
+
+<script>
+/* -------------------
+  本文タイプライター
+------------------- */
+const textParts = [
+  { text: `Clearance Level 1
+
+Borderless Children
+
+難民・孤児を対象とした福祉支援を主とした国際NGO。BHGは活動資金と施設の貸与をもって寄与している。
+BHGが保有する福祉施設において、衣食住ならび教育・職業訓練を提供しているほか、就業先としてBHG関連会社での受け入れも積極的に行っている。
+
+
+Muttonbird's Airline
+
+BHG直下にある、小規模航空会社。東アジア―オセアニア―北米西海岸、北米東海岸―ヨーロッパ圏の空域にて旅客業を営む。
+高所得者、富裕層向けのパッケージに特化し、チケットはすべてBHのみから発行されている。
+
+
+Traveler's Friend Guides
+
+TFGと略される、包括的な現地ガイドサービスを提供している会社。
+観光地の案内のほか、ホテルへのチェックイン、人気スポットの事前予約、移動手段の確保、現地人との交渉まで幅広く取り扱えることを強みとしているが、ガイドごとに得意や苦手、対応可能なサービスの範囲が異なるため、人気ガイドは常に「業務中」であることが多いのが玉に瑕。
+
+
+Workshop "Umikaze"
+
+Beyond Horizons本社近傍を筆頭に、オセアニア全域に拠点を構える小規模なワークショップ。規模こそ小さいものの水準は高く、観光地のグッズ製作の請負のほか、レジャーに使用される乗り物や機材の保全、修繕、委託製造まで手掛ける。
+
+
+IKAROS Orbital
+
+オーストラリアに本社を構える民間宇宙開発会社。Beyond Horizonsがスポンサーとなり資金を提供、民間宇宙港の建築・整備を推し進めさせている。将来的には運航と管理も事業に含む予定であり、Beyond Horizonsの未来のビジネスにおける要になる可能性もある。
+現時点においても、遠軌道に太陽光発電システムを構築し、エネルギー問題に1つのソリューションを提供する計画を推進中であり、SDGsに目がない投資家の注目を集めている。
+
+`, color: "black" },
+  { text: `
+
+Clearance Level 2
+
+Borderless Children
+
+入居者のほとんどが出所前と異なる人物として出所しているとの噂がある。受け入れた難民や孤児のデータを用いた身分偽造が行われているとか、いないとか
+
+
+Muttonbird's Airline
+
+フォックストロット・ニア・デルタ便とはこの会社の秘匿パッケージ。割高とすら言えない高額なチケット代であるが、BH所有の「パスポート」により、当人の出国/入国の履歴が残らないサービスが最大の強みとして利用されることが多い。
+
+
+Traveler's Friend Guides
+
+フォックストロット・ニア・デルタ便利用者に対し、ガイドに扮した護衛サービスも提供している。徹底した不殺傷主義による対象の守護を第一としているため、装備から後方支援まで、予算の許す限りの体制を都度用意している。
+
+
+Workshop "Umikaze"
+
+BHGが保有する様々な装備の製造を一手に担っており、所属するエンジニアには航空宇宙工学の学位を持つ者もいる。他社に委託できない様々なものが、作る当人すらその事実をすべて知らぬままに日夜製作されている。
+
+
+IKAROS Orbital
+
+BHGの生み出した利益や「表向きの出資」の投資先として現在もっとも重要視されている企業である。ロケットの往来用のステーションのみならず、SSTO機、DSTO機用の滑走路と、マスドライバーの建設も計画されている。各国が技術検証や実用化に挑み、国家事業として推し進めなければならない金額の構造体に、規模の大きくない企業が着手しようとしていることを、挑戦的と見るか、不審と見るか……
+`, color: "red" }
+];
+
+const target = document.getElementById("centerText");
+let partIndex = 0;
+let charIndex = 0;
+
+function typeWriterColor() {
+  if (partIndex < textParts.length) {
+    const part = textParts[partIndex];
+    if (charIndex < part.text.length) {
+      target.innerHTML += `<span style="color:${part.color}">${part.text.charAt(charIndex)}</span>`;
+      charIndex++;
+      setTimeout(typeWriterColor, 1); // タイプ速度
+    } else {
+      charIndex = 0;
+      partIndex++;
+      typeWriterColor();
+    }
+  }
+}
+
+typeWriterColor();
+
+/* -------------------
+  小リンクタイプライター
+------------------- */
+const nextLinksData = [
+  { text: '> company_会社概要', href: 'company.html' },
+  { text: '> locations_拠点', href: 'locations.html' },
+  { text: '> employees_従業員', href: 'employees.html' },
+  { text: '> services_サービス', href: 'services.html' },
+  { text: '> recruitment_採用', href: 'recruitment.html' }
+];
+
+const nextLinksContainer = document.getElementById('nextLinks');
+let linkIndex = 0;
+let charIndexLink = 0;
+
+function typeNextLinks() {
+  if (linkIndex < nextLinksData.length) {
+    const linkData = nextLinksData[linkIndex];
+    if (charIndexLink === 0) {
+      // 新しいリンク用aを作成
+      const a = document.createElement('a');
+      a.href = linkData.href;
+      a.id = `link-${linkIndex}`;
+      nextLinksContainer.appendChild(a);
+    }
+    const a = document.getElementById(`link-${linkIndex}`);
+    a.textContent += linkData.text.charAt(charIndexLink);
+    charIndexLink++;
+    if (charIndexLink < linkData.text.length) {
+      setTimeout(typeNextLinks, 1); // 文字タイプ速度
+    } else {
+      charIndexLink = 0;
+      linkIndex++;
+      setTimeout(typeNextLinks, 10); // リンク間の遅延
+    }
+  }
+}
+
+typeNextLinks();
+</script>
+
+</body>
+</html>

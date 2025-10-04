@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BHG DBS_main</title>
+  <link rel="stylesheet" href="under_style.css">
+</head>
+<body>
+
+<!-- 左上ロゴ + テキスト -->
+<div class="top-left">
+  <img src="../image/logo_silhouette_black.png" alt="logo">
+  <div class="text">
+    <span>BEYOND HORIZONS GROUP</span>
+    <span>Database Server</span>
+  </div>
+</div>
+
+<!-- 右下テキスト -->
+<a href="https://www.hotelqadesh.com/" class="bottom-right-text">HOTEL QADESH DERIVATIVE WORKS</a>
+
+<!-- 中央タイトル + リスト -->
+<div class="center-wrapper">
+  <span class="title">SELECT FILE</span>
+  <div class="db-container">
+    <div class="arrow"><a href="company.html">&gt; company_会社概要</a></div>
+    <div class="arrow"><a href="locations.html">&gt; locations_拠点</a></div>
+    <div class="arrow"><a href="employees.html">&gt; employees_従業員</a></div>
+    <div class="arrow"><a href="services.html">&gt; services_サービス</a></div>
+    <div class="arrow"><a href="affiliates.html">&gt; affiliates_関連会社</a></div>
+    <div class="arrow"><a href="recruitment.html">&gt; recruitment_採用</a></div>
+  </div>
+</div>
+
+<script>
+  const arrows = document.querySelectorAll('.arrow');
+  const shiftUpValues = [0, 38, 76, 114, 152, 190];
+
+  // タイプライター演出
+  let delay = 1500;
+  arrows.forEach((el) => {
+    const text = el.querySelector('a').textContent;
+    el.querySelector('a').textContent = '';
+    setTimeout(() => {
+      let i = 0;
+      const speed = 10;
+      const typer = setInterval(() => {
+        el.querySelector('a').textContent += text[i];
+        i++;
+        if(i >= text.length) clearInterval(typer);
+      }, speed);
+    }, delay);
+    delay += text.length * 10 + 50;
+  });
+
+  // クリックアニメーション
+  arrows.forEach((a, index) => {
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+
+      const wrapper = document.querySelector('.center-wrapper');
+      const logo = document.querySelector('.top-left');
+      const rectWrapper = wrapper.getBoundingClientRect();
+      const rectLogo = logo.getBoundingClientRect();
+
+      const link = a.querySelector('a');
+      const url = link.href;
+
+      // 他項目を左にスライド
+      arrows.forEach(other => { if(other !== a) other.classList.add('hide'); });
+
+      // ラッパー固定 & 選択項目上に
+      setTimeout(() => {
+        wrapper.style.position = 'fixed';
+        wrapper.style.left = rectWrapper.left + 'px';
+        wrapper.style.top = rectWrapper.top + 'px';
+        wrapper.style.transform = 'none';
+        a.style.marginTop = `-${shiftUpValues[index]}px`;
+
+        // 左上に移動 & scale
+        setTimeout(() => {
+          const targetLeft = rectLogo.right + 10;
+          const targetTop = rectLogo.bottom + 10;
+          wrapper.style.transition = 'left 0.6s ease, top 0.6s ease, transform 0.6s ease';
+          wrapper.style.left = targetLeft + 'px';
+          wrapper.style.top = targetTop + 'px';
+          wrapper.style.transform = 'scale(0.8)';
+
+          // ページ遷移
+          setTimeout(() => {
+            window.location.href = url;
+          }, 700);
+        }, 20);
+      }, 500);
+    });
+  });
+</script>
+</body>
+</html>

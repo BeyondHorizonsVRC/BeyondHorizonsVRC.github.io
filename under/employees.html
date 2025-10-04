@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BHG DBS_employees</title>
+  <link rel="stylesheet" href="under_item_style.css">
+</head>
+<body>
+
+<!-- 左上ロゴ + テキスト -->
+<a href="main.html" class="top-left">
+  <img src="../image/logo_silhouette_black.png" alt="logo">
+  <div class="text">
+    <span>BEYOND HORIZONS GROUP</span>
+    <span>Database Server</span>
+  </div>
+</div>
+</a>
+
+<!-- 右下テキスト -->
+<a href="https://www.hotelqadesh.com/" class="bottom-right-text">HOTEL QADESH DERIVATIVE WORKS</a>
+
+<!-- 中央ラッパー -->
+<div class="center-wrapper">
+  <span class="title">SELECT FILE</span>
+  <div class="db-container">
+    <div class="arrow selected">
+      <a href="employees.html">&gt; employees_従業員</a>
+      <span class="next-links" id="nextLinks"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 従業員リスト -->
+<div class="top-fade"></div>
+<div class="employee-center" id="centerText"></div>
+
+<script>
+/* -------------------
+  従業員リスト表示
+------------------- */
+const employees = [
+  {
+    img: "../image/noimage.png",
+    name: "Grims",
+    position: "CEO",
+    birthday: "xxxx-xx-xx",
+    sex: "Female"
+  },
+  {
+    img: "../image/employee_1.png",
+    name: "Boston",
+    position: "direct",
+    birthday: "1977-07-18",
+    sex: "Male"
+  },
+  {
+    img: "../image/noimage.png",
+    name: "Star",
+    position: "direct",
+    birthday: "xxxx-xx-xx",
+    sex: "Female"
+  },
+  {
+    img: "../image/noimage.png",
+    name: "Luna",
+    position: "direct",
+    birthday: "xxxx-xx-xx",
+    sex: "Female"
+  },
+  {
+    img: "../image/noimage.png",
+    name: "Soir",
+    position: "direct",
+    birthday: "xxxx-xx-xx",
+    sex: "Female"
+  },
+  {
+    img: "../image/noimage.png",
+    name: "Beanie",
+    position: "direct",
+    birthday: "xxxx-xx-xx",
+    sex: "Male"
+  },
+  {
+    img: "../image/noimage.png",
+    name: "Azusa",
+    position: "contract",
+    birthday: "xxxx-xx-xx",
+    sex: "Male"
+  },
+  {
+    img: "../image/noimage.png",
+    name: "Hikari",
+    position: "contract",
+    birthday: "xxxx-xx-xx",
+    sex: "Female"
+  },
+  {
+    img: "../image/noimage.png",
+    name: "Roz",
+    position: "contract",
+    birthday: "xxxx-xx-xx",
+    sex: "Male"
+  },
+  {
+    img: "../image/noimage.png",
+    name: "S.T.R.E.L.A.",
+    position: "contract",
+    birthday: "xxxx-xx-xx",
+    sex: "Male"
+  },
+  {
+    img: "../image/noimage.png",
+    name: "One dollar (Wanderer) Bots",
+    position: "N/A",
+    birthday: "N/A",
+    sex: "N/A"
+  }
+];
+
+
+const target = document.getElementById("centerText");
+let empIndex = 0;
+
+function showEmployees() {
+  if(empIndex < employees.length){
+    const emp = employees[empIndex];
+    const div = document.createElement('div');
+    div.className = 'employee';
+    div.innerHTML = `
+      <img src="${emp.img}" alt="${emp.name}">
+      <div class="employee-info">
+        <span>Name: ${emp.name}</span>
+        <span>Position: ${emp.position}</span>
+        <span>Birthday: ${emp.birthday}</span>
+        <span>Sex: ${emp.sex}</span>
+      </div>
+    `;
+    target.appendChild(div);
+    empIndex++;
+    setTimeout(showEmployees, 200);
+  }
+}
+
+showEmployees();
+
+/* -------------------
+  小リンクタイプライター
+------------------- */
+const nextLinksData = [
+  { text: '> company_会社概要', href: 'company.html' },
+  { text: '> locations_拠点', href: 'locations.html' },
+  { text: '> services_サービス', href: 'services.html' },
+  { text: '> affiliates_関連会社', href: 'affiliates.html' },
+  { text: '> recruitment_採用', href: 'recruitment.html' }
+];
+
+const nextLinksContainer = document.getElementById('nextLinks');
+let linkIndex = 0;
+let charIndexLink = 0;
+
+function typeNextLinks() {
+  if (linkIndex < nextLinksData.length) {
+    const linkData = nextLinksData[linkIndex];
+    if (charIndexLink === 0) {
+      const a = document.createElement('a');
+      a.href = linkData.href;
+      a.id = `link-${linkIndex}`;
+      nextLinksContainer.appendChild(a);
+    }
+    const a = document.getElementById(`link-${linkIndex}`);
+    a.textContent += linkData.text.charAt(charIndexLink);
+    charIndexLink++;
+    if (charIndexLink < linkData.text.length) {
+      setTimeout(typeNextLinks, 1);
+    } else {
+      charIndexLink = 0;
+      linkIndex++;
+      setTimeout(typeNextLinks, 10);
+    }
+  }
+}
+
+typeNextLinks();
+</script>
+
+</body>
+</html>
