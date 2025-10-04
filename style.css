@@ -1,0 +1,331 @@
+/* 全体のボックスサイズ調整 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ページ全体のスムーズスクロール */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* 横スクロール防止 */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden; /* 横スクロール防止 */
+}
+
+/* ヘッダー */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #000000;
+  color: #fff;
+  padding: 1rem 0;
+  z-index: 1000;
+}
+
+header .container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+}
+
+header nav ul li {
+  margin-left: 20px;
+}
+
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header nav ul li a:hover {
+  text-decoration: underline;
+}
+
+section {
+  scroll-margin-top: 40px; /* 固定ヘッダーの高さ分 */
+}
+
+/* ヒーローエリア */
+.hero {
+  margin-top: 70px;
+  position: relative;
+  width: 100%;
+  background: url("image/inside_1.png") center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 100px 20px;
+  box-sizing: border-box;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.hero .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.hero .btn:hover {
+  background: #555;
+}
+
+/* コンテンツ幅調整 */
+.content-wrapper {
+  width: 60%;
+  margin: auto;
+  padding: 40px 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* セクション見出し */
+.section-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 英語タイトル */
+.section-title .en {
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* 日本語タイトル */
+.section-title .jp {
+  font-size: 1.2rem;
+  display: block;
+  margin-top: 0;
+}
+
+/* セクション下の横線 */
+.section-line {
+  border: none;
+  height: 3px;
+  background-color: #001f5b;
+  width: 80%;
+  margin: 0 auto 40px auto;
+  display: block;
+}
+
+/* カード */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #f9f9f9;
+  padding: 40px 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  color: #333;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+}
+
+.card img.subsidiary-logo {
+  max-width: 120px;
+  margin-bottom: 15px;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+/* ボタン */
+.btn {
+  display: inline-block;
+  padding: 8px 15px;
+  background: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background: #555;
+}
+
+/* フッター */
+footer {
+  background: #000000;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: auto;
+}
+
+/* ロゴ */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo img {
+  max-height: 50px;
+}
+
+.brand-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* 地図画像 */
+.map-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* トピックスリスト */
+.topics-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 40px auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.topics-list li {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+/* セクション幅調整 */
+section, .hero {
+  width: 100%;
+}
+
+/* ページコンテンツレイアウト */
+.page-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 100px auto 60px auto; /* ヘッダー分余白 */
+  padding: 0 20px;
+}
+
+.page-image img {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.page-text {
+  flex: 1;
+  text-align: left;
+}
+
+.page-text p {
+  line-height: 1.8;
+}
+
+
+.reservation-form {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* 行間 */
+  width: 600px; /* 全体の横幅 */
+}
+
+.form-row {
+  display: flex;
+  gap: 20px; /* 列間 */
+  width: 100%;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1; /* 均等割り */
+}
+
+.form-item.double-width {
+  flex: 2; /* 2倍幅 */
+}
+
+.form-item.full-width {
+  flex: 3; /* 全幅（3列分） */
+}
+
+.form-item label {
+  margin-bottom: 4px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.form-item select,
+.form-item input 
+{
+  width: 100%;
+  padding: 4px;
+  font-size: 0.9rem;
+}

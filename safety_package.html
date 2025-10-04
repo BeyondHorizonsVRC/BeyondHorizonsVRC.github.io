@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoreline</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+
+  <header>
+    <div class="container">
+      <h1 class="logo">
+        <img src="image/logo_silhouette_white.png" alt="Beyond Horizons">
+        <span class="brand-text">Beyond Horizons</span>
+      </h1>
+      <nav>
+        <ul>
+        <li><a href="index.html">トップに戻る</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- メイン -->
+  <main>
+    <section class="page-content">
+      <div class="page-image">
+        <img src="image/noimage.png" alt="Resort sample">
+      </div>
+      <div class="page-text">
+        <h2 class="section-title">
+          <span class="en">Safety Package</span>
+          <span class="jp">セーフティパッケージ</span>
+        </h2>
+        <hr class="section-divider">
+        <p>
+          行きも帰りも安心して旅行を楽しみたい方向け、お財布にもセキュリティにも優しいパッケージです。<br>
+          当社と直接契約を結んでいるホテルにご宿泊いただきますので、宿探しもご安心です。<br>
+          日程、旅行先のほか、旅行先での懸念事項、心配事などをお尋ねします。<br>
+          有料のオプションにて、現地におけるガイドやセキュリティサービスをお付けすることも可能です。<br>
+          ご予算は、一般的な航空便の10～40倍程度となります。
+        </p>
+      </div>
+    </section>
+    <!-- ▼ 予約フォーム追加 ▼ -->
+<section class="reservation-form">
+  <form class="form-grid">
+    <!-- 1行目（出発地・目的地を2列分に広げる） -->
+    <div class="form-row">
+      <div class="form-item double-width">
+        <label for="departure">出発地</label>
+        <select id="departure" name="departure">
+          <option value="">Select</option>
+          <option value="">アラスカ アンカレッジ</option>
+          <option value="">アメリカ合衆国 ラスベガス</option>
+          <option value="">アメリカ合衆国 ニューヨーク</option>
+          <option value="">ギリシャ サントリーニ島</option>
+          <option value="">イタリア ローマ</option>
+          <option value="">イタリア ヴェネツィア</option>
+          <option value="">グレートブリテン及び北アイルランド連合王国 ロンドン</option>
+          <option value="">日本 東京</option>
+          <option value="">UAE ドバイ</option>
+          <option value="">中華人民共和国 香港</option>
+          <option value="">モロッコ マラケシュ</option>
+        </select>
+      </div>
+      <div class="form-item double-width">
+        <label for="destination">目的地</label>
+        <select id="destination" name="destination">
+          <option value="">Select</option>
+          <option value="">アラスカ アンカレッジ</option>
+          <option value="">アメリカ合衆国 ラスベガス</option>
+          <option value="">アメリカ合衆国 ニューヨーク</option>
+          <option value="">ギリシャ サントリーニ島</option>
+          <option value="">イタリア ローマ</option>
+          <option value="">イタリア ヴェネツィア</option>
+          <option value="">グレートブリテン及び北アイルランド連合王国 ロンドン</option>
+          <option value="">日本 東京</option>
+          <option value="">UAE ドバイ</option>
+          <option value="">中華人民共和国 香港</option>
+          <option value="">モロッコ マラケシュ</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 2行目（通常3列） -->
+    <div class="form-row">
+      <div class="form-item">
+        <label for="depart-date">出発日</label>
+        <input type="date" id="depart-date" name="depart-date">
+      </div>
+      <div class="form-item">
+        <label for="return-date">現地出発日</label>
+        <input type="date" id="return-date" name="return-date">
+      </div>
+      <div class="form-item">
+        <label for="people">人数</label>
+        <select id="people" name="people">
+          <option value="1">Select</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 3行目（予約便を全幅に広げる） -->
+    <div class="form-row">
+      <div class="form-item full-width">
+        <label for="flight">予約便</label>
+        <select id="flight" name="flight">
+          <option value="">Select</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</section>
+    <!-- ▲ 予約フォームここまで ▲ -->
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <p>&copy; Beyond Horizons Group. 2025</p>
+  </footer>
+</body>
+</html>
